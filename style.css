@@ -50,4 +50,15 @@ img {
 .count h4 {
     font-size: 20px;
     font-weight: normal;
+    padding-bottom: 20px;
+}
+
+.bar, .percentage {
+    height: 5px;
+    background-color: #fff;
+}
+
+.percentage {
+    width: 100%;
+    background-color: blue;
 }
