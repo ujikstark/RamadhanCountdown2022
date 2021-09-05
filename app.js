@@ -8,7 +8,11 @@ const minutesBar = document.getElementById('minutes');
 const hoursBar = document.getElementById('hours');
 const daysBar = document.getElementById('days');
 
+
 var destinationDate = new Date("April 2, 2022 08:00:00").getTime();
+
+var circle = document.querySelectorAll('.progress-ring__circle');
+
 
 var x = setInterval(function() {
 
@@ -36,8 +40,35 @@ var x = setInterval(function() {
     hoursBar.style.width = (hours*100/24)+'%';
     daysBar.style.width = Math.ceil(days*100/356)+'%';
     // console.log(d.getSeconds());
-    
-    // display the bar
-    
+
+    // get all circle
+    circle.forEach(c => {
+        var radius = c.r.baseVal.value;
+        var circumference = radius * 2 * Math.PI;
+        c.style.strokeDasharray = `${circumference} ${circumference}`;
+        c.style.strokeDashoffset = `${circumference}`;
+        
+        
+        if (c.id == 'seconds') {
+            const secondsToPercent = (seconds*100/60); // 100% to 0%
+            // const secondsToPercent = (100-(seconds+40))*100/60; // 0% to 100% 
+            const offset = circumference - secondsToPercent / 100 * circumference;
+            c.style.strokeDashoffset = offset;
+        } else if (c.id == 'minutes') {
+            const minutesToPercent = (minutes*100/60);
+            const offset = circumference - minutesToPercent / 100 * circumference;
+            c.style.strokeDashoffset = offset;
+        } else if (c.id == 'hours') {
+            const hoursToPercent = (hours*100/24);
+            const offset = circumference - hoursToPercent / 100 * circumference;
+            c.style.strokeDashoffset = offset;
+        } else {
+            const daysToPercent = Math.ceil(days*100/356);
+            const offset = circumference - daysToPercent / 100 * circumference;
+            c.style.strokeDashoffset = offset;
+        }
+        
+    })
+
 }, 1000);
 

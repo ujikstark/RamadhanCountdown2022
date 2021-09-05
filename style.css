@@ -27,10 +27,11 @@ img {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 .text h1 {
-    font-size: 60px;
+    font-size: 80px;
     padding-bottom: 100px;
 }
 
@@ -38,8 +39,20 @@ img {
     display: grid;
     text-align: center;
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    gap: 80px;
 }
+
+.box {
+    position: relative;
+}
+
+.data-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 
 .count h3 {
     font-size: 50px;
